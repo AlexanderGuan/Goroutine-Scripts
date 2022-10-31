@@ -3,9 +3,10 @@
 package main
 
 import (
-	"time"
 	"log"
 	"os"
+	"time"
+
 	"github.com/AlexanderGuan/Goroutine-Scripts/pattern/runner"
 )
 
@@ -22,8 +23,8 @@ func main() {
 	r.Add(createTask(), createTask(), createTask())
 
 	// 执行任务并处理结果
-	if err := r.Start(); err != nil{
-		switch err{
+	if err := r.Start(); err != nil {
+		switch err {
 		case runner.ErrTimeout:
 			log.Println("Terminating due to timeout.")
 			os.Exit(1)
@@ -37,8 +38,8 @@ func main() {
 }
 
 // createTask 返回一个根据 id 休眠指定秒数的示例任务
-func createTask() func(int){
-	return func(id int){
+func createTask() func(int) {
+	return func(id int) {
 		log.Printf("Processeor - Task #%d.", id)
 		time.Sleep(time.Duration(id) * time.Second)
 	}
